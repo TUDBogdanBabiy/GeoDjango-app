@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib.gis import admin
 from django.urls import path, include
-
+from django.views.generic.base import TemplateView # new
+from world import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/', views.register,name='register'),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('admin/', admin.site.urls),
+    path('map/', TemplateView.as_view(template_name='map.html'), name='map'),
+    path('updatedb/',views.update_location),
+
 ]

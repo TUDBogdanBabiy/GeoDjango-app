@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Home{% endblock %}
+{% block nav_title %}Home{% endblock %}
+
+{% block body_content %}
+{% if user.is_authenticated %}
+    <h2>Welcome back <strong>{{ user.username }}</strong>!</h2>
+{% else %}
+    <div class="text-center">
+        <h4><a href="{% url 'login' %}">Log In</a></h4>
+        <br>
+        <div class="row offset-2">
+            <div class="col-3 px-0"><hr/></div>
+            <div class="col-3 px-0">or</div>
+            <div class="col-3 px-0"><hr/></div>
+        </div>
+        <br>
+        <h4><a href="{% url 'register' %}">Sign Up</a></h4>
+    </div>
+{% endif %}
+{% endblock %}

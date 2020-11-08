@@ -54,8 +54,19 @@
             if (locationMarker) {
                 map.removeLayer(locationMarker);
             }
+            // Creates a red marker with the coffee icon
+            var myIcon = L.icon({
+                iconUrl: '../static/leaflet/images/marker-icon.png',
+                iconSize: [38, 70],
+                iconAnchor: [20, 65],
+                popupAnchor: [-3, -50],
+                shadowUrl: '../static/leaflet/images/marker-shadow.png',
+                shadowSize: [68, 95],
+                shadowAnchor: [22, 94]
+            });
 
-            locationMarker = L.marker(myLatLon).addTo(map);
+            locationMarker = L.marker(myLatLon,{icon: myIcon}).addTo(map);
+            locationMarker.bindPopup('<strong>{{ user.username }}</strong><br>Latitude: '+pos.coords.latitude+'<br>Longitude: '+pos.coords.longitude).openPopup();
             if (circle) {
                 map.removeLayer(circle);
             }
